@@ -4,31 +4,36 @@
 int main() {
 	setlocale(LC_ALL, "Russian");
 
-	int k = 3; // кол-во ур-ний
-	int m[3] = { 7, 5, 6 }; // int[k] - k штук, целые попарно взаимно простые
-	int a[3] = { 6, 1, 0 }; // int[k] - k штук, остатки
-	int x = 0;
-	int M = 1;
-	int b;
-	int c;
+	int m[3] = { 4, 3, 5 }; // int[n] - n штук, целые попарно взаимно простые
+	int o[3] = { 3, 2, 1 }; // int[n] - n штук, остатки
+
+	int n = 3, // количество уравнений
+	x = 0, M = 1, a, b;
+
+	// вывод системы уравнений
+	cout << "Дана система:" << endl;
+	for (int i = 0; i < n; i++) {
+		cout << "x = " << o[i] << " (mod " << m[i] << ")" << endl;
+	}
+	cout << endl;
 
 	// M = m1*m2*...*mj
-	for (int j = 0; j < k; j++) {
-		M *= m[j];
+	for (int i = 0; i < n; i++) {
+		M *= m[i];
 	}
-	cout << "M: "<< M << endl;
+	cout << "M: " << M << endl << endl;
 
-	for (int i = 0; i < k; i++) {
+	for (int i = 0; i < n; i++) {
 		cout << "Итерация: " << i + 1 << endl;
 
-		b = M / m[i];
-		cout << "b=" << b << "; ";
+		a = M / m[i];
+		cout << "b=" << a << "; ";
 
-		c = inverse(b, m[i]);
-		cout << "c=" << c << "; ";
+		b = inverse(a, m[i]);
+		cout << "c=" << b << "; ";
 
-		x = (x + (a[i] * b * c)) % M;
-		cout << "x=" << x << ";" << endl;
+		x = (x + (o[i] * a * b)) % M;
+		cout << "x=" << x << ";" << endl << endl;
 	};
 
 	cout << "Результат: x=" << x << " (mod " << M << ")" << endl;
