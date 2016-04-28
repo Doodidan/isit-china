@@ -4,12 +4,13 @@
 
 using namespace std;
 
-int mul_inv (int a, int b) {
-	int b0 = b, t, q;
-	int x0 = 0, x1 = 1;
+int inverse (int a, int b) {
 	if (b == 1) {
 		return 1;
 	};
+
+	int b0 = b, t, q;
+	int x0 = 0, x1 = 1;
 	while (a > 1) {
 		q = a / b;
 		t = b, b = a % b, a = t;
@@ -21,31 +22,37 @@ int mul_inv (int a, int b) {
 	return x1;
 }
 
-void main() {
+int main() {
 	setlocale(LC_ALL, "Russian");
 
 	int k = 3; // кол-во ур-ний
-	int m[3] = { 7, 5, 6 }; // int[k] - k штук, целые взаимно простые
+	int m[3] = { 7, 5, 6 }; // int[k] - k штук, целые попарно взаимно простые
 	int a[3] = { 6, 1, 0 }; // int[k] - k штук, остатки
 	int x = 0;
 	int M = 1;
 	int b;
 	int c;
+
 	// M = m1*m2*...*mj
 	for (int j = 0; j < k; j++) {
 		M *= m[j];
 	}
-	cout << "Число M: "<< M << endl;
+	cout << "M: "<< M << endl;
+
 	for (int i = 0; i < k; i++) {
+		cout << "Итерация: " << i + 1 << endl;
+
 		b = M / m[i];
-		cout << "b=" << b << endl;
+		cout << "b=" << b << "; ";
 
-		c = mul_inv(b, m[i]);
-		cout << "c=" << c << endl;
+		c = inverse(b, m[i]);
+		cout << "c=" << c << "; ";
 
-		x = (x + (a[i] * b*c)) % M;
-		cout << "x=" << x << endl;
+		x = (x + (a[i] * b * c)) % M;
+		cout << "x=" << x << ";" << endl;
 	};
 
-	cout << "Результат: x=" << x << " (mod" << M << ")" << endl;
+	cout << "Результат: x=" << x << " (mod " << M << ")" << endl;
+
+	return 0;
 }
