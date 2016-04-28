@@ -1,6 +1,6 @@
 #include "head.h"
 
-int inverse(int a, int b) {
+int inverse (int a, int b) {
 	if (b == 1) {
 		return 1;
 	};
