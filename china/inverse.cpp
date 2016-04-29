@@ -1,4 +1,5 @@
 #include "head.h"
+#include "functions.h"
 
 int inverse (int a, int b) {
 	if (b == 1) {
