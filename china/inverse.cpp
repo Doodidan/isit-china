@@ -1,12 +1,12 @@
 #include "head.h"
 #include "functions.h"
 
-int inverse (int a, int b) {
+unsigned int inverse (unsigned int a, unsigned int b) {
 	if (b == 1) {
 		return 1;
 	};
 
-	int b0 = b, t, q, x0 = 0, x1 = 1;
+	unsigned int b0 = b, t, q, x0 = 0, x1 = 1;
 
 	while (a > 1) {
 		q = a / b;

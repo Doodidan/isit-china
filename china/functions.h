@@ -1,1 +1,1 @@
-int inverse (int a, int b);
+unsigned int inverse(unsigned int a, unsigned int b);
