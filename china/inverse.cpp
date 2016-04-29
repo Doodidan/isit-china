@@ -1,5 +1,4 @@
 #include "head.h"
-#include "functions.h"
 
 unsigned int inverse (unsigned int a, unsigned int b) {
 	if (b == 1) {
